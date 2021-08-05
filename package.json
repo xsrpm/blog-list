@@ -20,7 +20,8 @@
     "test:cypress-open": "cypress:open --workspace=app",
     "test:cypress-cli": "test:e2e --workspace=app",
     "test:components": "npm run test --workspace=app",
-    "test:supertest": "npm run test --workspace=api"
+    "test:supertest": "npm run test --workspace=api",
+    "lint": "eslint ./api ./app"
   },
   "license": "ISC",
   "eslintConfig": {

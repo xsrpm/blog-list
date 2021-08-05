@@ -17,9 +17,7 @@ test('blog url and number of likes are shown when the button controlling the sho
     id: '60f6673346cc323e0ceffcb9'
   }
 
-  const component = render(
-    <BlogContainer blog={blog} />
-  )
+  const component = render(<BlogContainer blog={blog} />)
 
   const button = component.getByText('view')
   fireEvent.click(button)
@@ -27,9 +25,9 @@ test('blog url and number of likes are shown when the button controlling the sho
   // component.debug()
   const likesCount = component.getByText(blog.likes)
   expect(likesCount).toBeDefined()
-  // console.log(prettyDOM(likesCount))
+  console.log(prettyDOM(likesCount))
 
   const blogUrl = component.getByText(blog.url)
   expect(blogUrl).toBeDefined()
-  // console.log(prettyDOM(blogUrl))
+  console.log(prettyDOM(blogUrl))
 })
