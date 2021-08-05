@@ -1,0 +1,44 @@
+{
+  "name": "blog-list",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build --workspace=app",
+    "start": "npm run start --workspace=api",
+    "dev:api": "npm run build && npm run dev --workspace=api",
+    "dev:app": "npm start --workspace=app",
+    "test:api": "npm run build && npm run start:test --workspace=api",
+    "test:cypress-open": "cypress:open --workspace=app",
+    "test:cypress-cli": "test:e2e --workspace=app",
+    "test:components": "npm run test --workspace=app",
+    "test:supertest": "npm run test --workspace=api"
+  },
+  "license": "ISC",
+  "eslintConfig": {
+    "ignorePatterns": "build",
+    "extends": [
+      "./node_modules/standard/eslintrc.json"
+    ],
+    "env": {
+      "cypress/globals": true,
+      "jest": true
+    },
+    "plugins": [
+      "cypress"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "standard": "^16.0.3",
+    "eslint-plugin-cypress": "^2.11.3",
+    "jest": "^27.0.6"
+  }
+}

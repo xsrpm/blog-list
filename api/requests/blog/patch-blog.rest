@@ -1,0 +1,9 @@
+PATCH http://localhost:3003/api/blogs/60f8544ccd357002b8e1a4f2
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+    "title": "xsr",
+    "url": "url xsr",
+    "likes": 10
+}

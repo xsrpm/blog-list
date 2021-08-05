@@ -1,0 +1,2 @@
+GET http://localhost:3003/api/blogs/60f6673346cc323e0ceffcb9
+Authorization: Bearer <token>

@@ -1,0 +1,21 @@
+POST http://localhost:3003/api/users/
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+    "username":"xsrpm",
+    "password":"123456",
+    "name":"cesar"
+}
+###username: xsrpm
+###password:123456
+###username: lucky
+###password:123
+###username: krister
+###password:12345678
+###username: master
+###password:123
+###username: doris
+###password:123
+###username: cielo
+###password:123
