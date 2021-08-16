@@ -12,7 +12,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "SKIP_PREFLIGHT_CHECK=true npm run build --workspace=app",
+    "build": "cross-env SKIP_PREFLIGHT_CHECK=true npm run build --workspace=app",
     "start": "npm run start --workspace=api",
     "dev:api": "npm run build && npm run dev --workspace=api",
     "dev:app": "npm start --workspace=app",
@@ -41,8 +41,10 @@
     "testEnvironment": "node"
   },
   "devDependencies": {
-    "standard": "^16.0.3",
+    "cross-env": "^7.0.3",
     "eslint-plugin-cypress": "^2.11.3",
-    "jest": "^27.0.6"
-  }
+    "jest": "^27.0.6",
+    "standard": "^16.0.3"
+  },
+  "dependencies": {}
 }

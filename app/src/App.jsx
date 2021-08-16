@@ -7,31 +7,21 @@ const App = () => {
   const [user, setUser] = useState(
     JSON.parse(window.localStorage.getItem('loggedBlogListUser'))
   )
-  const [message, setMessage] = useState('')
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedBlogListUser')
     setUser(null)
   }
 
-  const sendNotification = (message) => {
-    setMessage(message)
-    setTimeout(() => {
-      setMessage('')
-    }, 5000)
-  }
-
-  const blogApp = () => (
-    <AppBlog user={user} handleLogout={handleLogout} />
-  )
+  const blogApp = () => <AppBlog user={user} handleLogout={handleLogout} />
 
   const login = () => (
-    <LoginContainer setUser={setUser} sendNotification={sendNotification}>
-      <Notification message={message} />
+    <LoginContainer setUser={setUser}>
+      <Notification />
     </LoginContainer>
   )
 
-  return (<>{user ? blogApp() : login()}</>)
+  return <>{user ? blogApp() : login()}</>
 }
 
 export default App

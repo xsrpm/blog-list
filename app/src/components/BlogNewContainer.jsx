@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
-import { create } from '../services/blogs'
+import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
+import { sendNotification } from '../reducers/notificationReducer'
+import { create } from '../services/blogs'
+
 import BlogNew from './BlogNew'
 
-const BlogNewContainer = ({ sendNotification, addBlog }) => {
+const BlogNewContainer = ({ addBlog }) => {
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
   const [isOpen, setIsOpen] = useState(false)
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -20,7 +24,7 @@ const BlogNewContainer = ({ sendNotification, addBlog }) => {
         setTitle('')
         setUrl('')
         formClose()
-        sendNotification(`a new blog ${body.title} added`)
+        dispatch(sendNotification(`a new blog ${body.title} added`, 5))
         addBlog(body)
       })
       .catch((error) => {
@@ -30,7 +34,7 @@ const BlogNewContainer = ({ sendNotification, addBlog }) => {
           // that falls out of the range of 2xx
           console.log(error.response.data.error)
           console.log(error.response.status)
-          sendNotification(error.response.data.error)
+          dispatch(sendNotification(error.response.data.error, 5))
         }
       })
   }
@@ -65,8 +69,7 @@ const BlogNewContainer = ({ sendNotification, addBlog }) => {
 }
 
 BlogNewContainer.propTypes = {
-  addBlog: PropTypes.func.isRequired,
-  sendNotification: PropTypes.func.isRequired
+  addBlog: PropTypes.func.isRequired
 }
 
 export default BlogNewContainer

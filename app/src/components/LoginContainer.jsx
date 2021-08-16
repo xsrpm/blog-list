@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import { login } from '../services/login'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 import Login from './Login'
-const LoginContainer = ({ children, sendNotification, setUser }) => {
+import { login } from '../services/login'
+import { sendNotification } from '../reducers/notificationReducer'
+const LoginContainer = ({ children, setUser }) => {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' })
+  const dispatch = useDispatch()
 
   const handleSubmitLogin = (e) => {
     e.preventDefault()
@@ -25,7 +28,7 @@ const LoginContainer = ({ children, sendNotification, setUser }) => {
           // that falls out of the range of 2xx
           console.log(error.response.data.error)
           console.log(error.response.status)
-          sendNotification(error.response.data.error)
+          dispatch(sendNotification(error.response.data.error, 5))
         }
       })
   }
@@ -50,7 +53,6 @@ const LoginContainer = ({ children, sendNotification, setUser }) => {
 
 LoginContainer.propTypes = {
   setUser: PropTypes.func.isRequired,
-  sendNotification: PropTypes.func.isRequired,
   children: PropTypes.node
 }
 

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { getAll, setToken } from '../services/blogs'
 import BlogList from './BlogList'
 import BlogNewContainer from './BlogNewContainer'
 import Notification from './Notification'
+import { sendNotification } from '../reducers/notificationReducer'
 
 const AppBlog = ({ user, handleLogout }) => {
   const [blogs, setBlogs] = useState([])
-  const [message, setMessage] = useState('')
+  const dispatch = useDispatch()
 
   if (user !== null) {
     setToken(user.token)
@@ -26,7 +28,7 @@ const AppBlog = ({ user, handleLogout }) => {
           // that falls out of the range of 2xx
           console.log(error.response.data.error)
           console.log(error.response.status)
-          sendNotification(error.response.data.error)
+          dispatch(sendNotification(error.response.data.error, 5))
         }
       })
   }, [])
@@ -35,22 +37,15 @@ const AppBlog = ({ user, handleLogout }) => {
     setBlogs([...blogs, blog])
   }
 
-  const sendNotification = (message) => {
-    setMessage(message)
-    setTimeout(() => {
-      setMessage('')
-    }, 5000)
-  }
-
   return (
     <>
       <article>
         <h2>Logged in as {user.username}</h2>
         <input type='button' value='logout' onClick={handleLogout} />
       </article>
-      <BlogNewContainer sendNotification={sendNotification} addBlog={addBlog} />
+      <BlogNewContainer addBlog={addBlog} />
       <BlogList blogs={blogs}>
-        <Notification message={message} />
+        <Notification />
       </BlogList>
     </>
   )
