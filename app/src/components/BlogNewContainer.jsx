@@ -18,6 +18,12 @@ const BlogNewContainer = () => {
       url
     }
     dispatch(createBlog(blog))
+      .then(() => {
+        setTitle('')
+        setUrl('')
+        formClose()
+        dispatch(sendNotification(`a new blog ${blog.title} added`, 5))
+      })
       .catch((error) => {
         console.log({ error })
         if (error.response) {
@@ -27,12 +33,6 @@ const BlogNewContainer = () => {
           console.log(error.response.status)
           dispatch(sendNotification(error.response.data, 5))
         }
-      })
-      .finally(() => {
-        setTitle('')
-        setUrl('')
-        formClose()
-        dispatch(sendNotification(`a new blog ${blog.title} added`, 5))
       })
   }
 

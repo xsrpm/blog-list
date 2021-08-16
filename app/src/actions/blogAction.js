@@ -1,4 +1,4 @@
-import { create, getAll } from '../services/blogs'
+import { create, getAll, like, remove } from '../services/blogs'
 
 export const createBlog = (blog) => {
   return async (dispatch) => {
@@ -23,5 +23,29 @@ export const initializeBlogs = () => {
       }
     })
     console.log('Blogs initialized')
+  }
+}
+
+export const deleteBlog = (blogId) => {
+  return async (dispatch) => {
+    await remove(blogId)
+    dispatch({
+      type: '@BLOG/DELETE_BLOG',
+      payload: {
+        blogId
+      }
+    })
+  }
+}
+
+export const likeBlog = (blogId) => {
+  return async (dispatch) => {
+    await like(blogId)
+    dispatch({
+      type: '@BLOG/LIKE_BLOG',
+      payload: {
+        blogId
+      }
+    })
   }
 }

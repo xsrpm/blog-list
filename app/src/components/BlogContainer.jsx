@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import { like, remove } from '../services/blogs'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { deleteBlog, likeBlog } from '../actions/blogAction'
+// import { like, remove } from '../services/blogs'
 import Blog from './Blog'
 const BlogContainer = ({ blog }) => {
+  const dispatch = useDispatch()
   const [showMore, setShowMore] = useState(false)
   const [mount, setMount] = useState(true)
   const [likesCount, setLikesCount] = useState(blog.likes)
@@ -12,20 +15,17 @@ const BlogContainer = ({ blog }) => {
   }
 
   const handleClickLike = (id) => {
-    like(id)
-      .then((body) => {
-        setLikesCount(likesCount + 1)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    dispatch(likeBlog(id)).catch((err) => {
+      console.log(err)
+    })
+    setLikesCount(likesCount + 1)
   }
 
   const handleClickDelete = (title, id) => {
     const confirm = window.confirm(`Remove blog ${title}`)
     if (confirm) {
-      remove(id)
-        .then((body) => {
+      dispatch(deleteBlog(id))
+        .then(() => {
           setMount(false)
         })
         .catch((err) => {
