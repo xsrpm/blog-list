@@ -2,8 +2,12 @@ import React from 'react'
 import BlogContainer from './BlogContainer'
 
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
-const BlogList = ({ children, blogs }) => {
+const BlogList = ({ children }) => {
+  const blogs = useSelector((state) =>
+    state.blogs.sort((a, b) => b.likes - a.likes)
+  )
   return (
     <article>
       {children}

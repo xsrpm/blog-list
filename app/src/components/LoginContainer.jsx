@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import Login from './Login'
 import { login } from '../services/login'
-import { sendNotification } from '../reducers/notificationReducer'
+import { sendNotification } from '../actions/notificationAction'
 const LoginContainer = ({ children, setUser }) => {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' })
   const dispatch = useDispatch()

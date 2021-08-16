@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import PropTypes from 'prop-types'
-import { sendNotification } from '../reducers/notificationReducer'
-import { create } from '../services/blogs'
+import { sendNotification } from '../actions/notificationAction'
+import { createBlog } from '../actions/blogAction'
 
 import BlogNew from './BlogNew'
 
-const BlogNewContainer = ({ addBlog }) => {
+const BlogNewContainer = () => {
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
   const [isOpen, setIsOpen] = useState(false)
@@ -18,24 +17,22 @@ const BlogNewContainer = ({ addBlog }) => {
       title,
       url
     }
-    create(blog)
-      .then((body) => {
-        console.log({ body })
-        setTitle('')
-        setUrl('')
-        formClose()
-        dispatch(sendNotification(`a new blog ${body.title} added`, 5))
-        addBlog(body)
-      })
+    dispatch(createBlog(blog))
       .catch((error) => {
         console.log({ error })
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
-          console.log(error.response.data.error)
+          console.log(error.response.data)
           console.log(error.response.status)
-          dispatch(sendNotification(error.response.data.error, 5))
+          dispatch(sendNotification(error.response.data, 5))
         }
+      })
+      .finally(() => {
+        setTitle('')
+        setUrl('')
+        formClose()
+        dispatch(sendNotification(`a new blog ${blog.title} added`, 5))
       })
   }
 
@@ -66,10 +63,6 @@ const BlogNewContainer = ({ addBlog }) => {
       isOpen={isOpen}
     />
   )
-}
-
-BlogNewContainer.propTypes = {
-  addBlog: PropTypes.func.isRequired
 }
 
 export default BlogNewContainer
