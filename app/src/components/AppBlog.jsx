@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setToken } from '../services/blogs'
 import BlogList from './BlogList'
 import BlogNewContainer from './BlogNewContainer'
 import Notification from './Notification'
 import { initializeBlogs } from '../actions/blogAction'
 import { sendNotification } from '../actions/notificationAction'
+import { logout } from '../actions/loginAction'
 
-const AppBlog = ({ user, handleLogout }) => {
+const AppBlog = () => {
   const dispatch = useDispatch()
+  const signedUser = useSelector((state) => state.signedUser)
 
-  if (user !== null) {
-    setToken(user.token)
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+
+  if (signedUser !== null) {
+    setToken(signedUser.token)
   } else {
     setToken(null)
   }
@@ -31,7 +37,7 @@ const AppBlog = ({ user, handleLogout }) => {
   return (
     <>
       <article>
-        <h2>Logged in as {user.username}</h2>
+        <h2>Logged in as {signedUser.username}</h2>
         <input type='button' value='logout' onClick={handleLogout} />
       </article>
       <BlogNewContainer />

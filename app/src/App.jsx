@@ -1,27 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import AppBlog from './components/AppBlog'
 import LoginContainer from './components/LoginContainer'
 import Notification from './components/Notification'
 
 const App = () => {
-  const [user, setUser] = useState(
-    JSON.parse(window.localStorage.getItem('loggedBlogListUser'))
-  )
+  const signedUser = useSelector((state) => state.signedUser)
 
-  const handleLogout = () => {
-    window.localStorage.removeItem('loggedBlogListUser')
-    setUser(null)
-  }
-
-  const blogApp = () => <AppBlog user={user} handleLogout={handleLogout} />
+  const blogApp = () => <AppBlog user={signedUser} />
 
   const login = () => (
-    <LoginContainer setUser={setUser}>
+    <LoginContainer>
       <Notification />
     </LoginContainer>
   )
 
-  return <>{user ? blogApp() : login()}</>
+  return <>{signedUser ? blogApp() : login()}</>
 }
 
 export default App

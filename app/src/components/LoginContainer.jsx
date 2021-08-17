@@ -2,35 +2,33 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import Login from './Login'
-import { login } from '../services/login'
 import { sendNotification } from '../actions/notificationAction'
-const LoginContainer = ({ children, setUser }) => {
+import { login } from '../actions/loginAction'
+const LoginContainer = ({ children }) => {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' })
   const dispatch = useDispatch()
 
   const handleSubmitLogin = (e) => {
     e.preventDefault()
 
-    login({
-      username: loginForm.username,
-      password: loginForm.password
+    dispatch(
+      login({
+        username: loginForm.username,
+        password: loginForm.password
+      })
+    ).catch((error) => {
+      setLoginForm({ username: '', password: '' })
+      console.log({ error })
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data.error)
+        console.log(error.response.status)
+        dispatch(
+          sendNotification(error.response.data?.error || error.response.data, 5)
+        )
+      }
     })
-      .then((body) => {
-        console.log(body)
-        window.localStorage.setItem('loggedBlogListUser', JSON.stringify(body))
-        setLoginForm({ username: '', password: '' })
-        setUser(body)
-      })
-      .catch((error) => {
-        console.log({ error })
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data.error)
-          console.log(error.response.status)
-          dispatch(sendNotification(error.response.data.error, 5))
-        }
-      })
   }
 
   const handleChangeLogin = (e) => {
@@ -52,7 +50,6 @@ const LoginContainer = ({ children, setUser }) => {
 }
 
 LoginContainer.propTypes = {
-  setUser: PropTypes.func.isRequired,
   children: PropTypes.node
 }
 
