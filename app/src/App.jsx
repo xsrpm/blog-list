@@ -1,13 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { initializeLogin } from './actions/loginAction'
 import AppBlog from './components/AppBlog'
 import LoginContainer from './components/LoginContainer'
 import Notification from './components/Notification'
 
-const App = () => {
+const AppLogin = () => {
   const signedUser = useSelector((state) => state.signedUser)
-
-  const blogApp = () => <AppBlog user={signedUser} />
+  const blogApp = () => <AppBlog />
 
   const login = () => (
     <LoginContainer>
@@ -16,6 +16,13 @@ const App = () => {
   )
 
   return <>{signedUser ? blogApp() : login()}</>
+}
+
+const App = () => {
+  const dispatch = useDispatch()
+  const signedUser = JSON.parse(window.localStorage.getItem('signedUser'))
+  dispatch(initializeLogin(signedUser))
+  return <AppLogin />
 }
 
 export default App

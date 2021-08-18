@@ -13,6 +13,7 @@ const AppBlog = () => {
   const signedUser = useSelector((state) => state.signedUser)
 
   const handleLogout = () => {
+    window.localStorage.removeItem('signedUser')
     dispatch(logout())
   }
 

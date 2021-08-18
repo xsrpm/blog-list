@@ -4,6 +4,8 @@ const reducer = (state = null, action) => {
       return action.payload.signedUser
     case '@LOGIN/LOGOUT':
       return null
+    case '@LOGIN/INITIALIZE_LOGIN':
+      return action.payload.signedUser
     default:
       return state
   }
