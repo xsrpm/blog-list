@@ -1,9 +1,15 @@
 {
-    "recommendations": [
-        "andys8.jest-snippets",
-        "standard.vscode-standard",
-        "vscode-icons-team.vscode-icons",
-        "humao.rest-client",
-        "usernamehw.errorlens"
-    ]
+  "recommendations": [
+    "andys8.jest-snippets",
+    "vscode-icons-team.vscode-icons",
+    "humao.rest-client",
+    "usernamehw.errorlens",
+    "dsznajder.es7-react-js-snippets",
+    "esbenp.prettier-vscode",
+    "steoates.autoimport",
+    "formulahendry.auto-rename-tag",
+    "streetsidesoftware.code-spell-checker",
+    "github.copilot",
+    "dbaeumer.vscode-eslint"
+  ]
 }
