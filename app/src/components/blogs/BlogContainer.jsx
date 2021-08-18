@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
-import { deleteBlog, likeBlog } from '../actions/blogAction'
-// import { like, remove } from '../services/blogs'
+import { deleteBlog, likeBlog } from '../../actions/blogAction'
 import Blog from './Blog'
 const BlogContainer = ({ blog }) => {
   const dispatch = useDispatch()

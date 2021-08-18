@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { sendNotification } from '../actions/notificationAction'
-import { createBlog } from '../actions/blogAction'
+import { sendNotification } from '../../actions/notificationAction'
+import { createBlog } from '../../actions/blogAction'
 
 import BlogNew from './BlogNew'
 

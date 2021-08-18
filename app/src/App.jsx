@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { initializeLogin, logout } from './actions/loginAction'
-import AppBlog from './components/AppBlog'
+import AppBlog from './components/blogs/AppBlog'
 import LoginContainer from './components/LoginContainer'
 import Notification from './components/Notification'
 

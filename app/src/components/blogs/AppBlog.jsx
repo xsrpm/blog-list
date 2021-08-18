@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setToken } from '../services/blogs'
+import { setToken } from '../../services/blogs'
 import BlogList from './BlogList'
 import BlogNewContainer from './BlogNewContainer'
-import Notification from './Notification'
-import { initializeBlogs } from '../actions/blogAction'
-import { sendNotification } from '../actions/notificationAction'
+import Notification from '../Notification'
+import { initializeBlogs } from '../../actions/blogAction'
+import { sendNotification } from '../../actions/notificationAction'
 
 const AppBlog = () => {
   const dispatch = useDispatch()
