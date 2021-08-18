@@ -6,16 +6,10 @@ import BlogNewContainer from './BlogNewContainer'
 import Notification from './Notification'
 import { initializeBlogs } from '../actions/blogAction'
 import { sendNotification } from '../actions/notificationAction'
-import { logout } from '../actions/loginAction'
 
 const AppBlog = () => {
   const dispatch = useDispatch()
   const signedUser = useSelector((state) => state.signedUser)
-
-  const handleLogout = () => {
-    window.localStorage.removeItem('signedUser')
-    dispatch(logout())
-  }
 
   if (signedUser !== null) {
     setToken(signedUser.token)
@@ -38,13 +32,12 @@ const AppBlog = () => {
   return (
     <>
       <article>
-        <h2>Logged in as {signedUser.username}</h2>
-        <input type='button' value='logout' onClick={handleLogout} />
+        <h2>blogs</h2>
+        <BlogNewContainer />
+        <BlogList>
+          <Notification />
+        </BlogList>
       </article>
-      <BlogNewContainer />
-      <BlogList>
-        <Notification />
-      </BlogList>
     </>
   )
 }
