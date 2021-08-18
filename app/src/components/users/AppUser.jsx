@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setToken } from '../../services/blogs'
-import BlogList from './BlogList'
-import BlogNewContainer from './BlogNewContainer'
-import Notification from '../Notification'
-import { initializeBlogs } from '../../actions/blogAction'
+import { useSelector, useDispatch } from 'react-redux'
 import { sendNotification } from '../../actions/notificationAction'
+import { initializeUsers } from '../../actions/userAction'
+import { setToken } from '../../services/users'
+import UserList from './UserList'
 
-const AppBlog = () => {
+const AppUser = () => {
   const dispatch = useDispatch()
   const signedUser = useSelector((state) => state.signedUser)
 
@@ -18,7 +16,7 @@ const AppBlog = () => {
   }
 
   useEffect(() => {
-    dispatch(initializeBlogs()).catch((error) => {
+    dispatch(initializeUsers()).catch((error) => {
       console.log({ error })
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -32,13 +30,10 @@ const AppBlog = () => {
 
   return (
     <article>
-      <h2>blogs</h2>
-      <BlogNewContainer />
-      <BlogList>
-        <Notification />
-      </BlogList>
+      <h2>Users</h2>
+      <UserList />
     </article>
   )
 }
 
-export default AppBlog
+export default AppUser
