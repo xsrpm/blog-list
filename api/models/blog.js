@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Exception = require('../utils/exception')
+const { getUserById } = require('./user')
 
 const blogSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -58,11 +59,24 @@ const deleteBlogByIdAndUser = async (blogId, userId) => {
   if (blog === null) throw new Exception('NotFound', 'blog not found')
   if (blog.user._id.toString() === userId) {
     await blog.remove()
+    const user = await getUserById(blog.user._id.toString())
+    user.blogs = user.blogs.filter((b) => b.toString() !== blogId.toString())
+    await user.save()
   } else {
-    throw new Exception('Unauthorized', 'Unauthorized blog delete for this user')
+    throw new Exception(
+      'Unauthorized',
+      'Unauthorized blog delete for this user'
+    )
   }
 }
 
 const Blog = mongoose.model('Blog', blogSchema)
 
-module.exports = { getBlogs, getBlogById, updateBlogById, deleteBlogByIdAndUser, createBlog, deleteBlogs }
+module.exports = {
+  getBlogs,
+  getBlogById,
+  updateBlogById,
+  deleteBlogByIdAndUser,
+  createBlog,
+  deleteBlogs
+}

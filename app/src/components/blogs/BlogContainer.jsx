@@ -6,7 +6,7 @@ import Blog from './Blog'
 const BlogContainer = ({ blog }) => {
   const dispatch = useDispatch()
   const [showMore, setShowMore] = useState(false)
-  const [mount, setMount] = useState(true)
+  const [mount] = useState(true)
   const [likesCount, setLikesCount] = useState(blog.likes)
 
   const handleClickShow = () => {
@@ -23,13 +23,9 @@ const BlogContainer = ({ blog }) => {
   const handleClickDelete = (title, id) => {
     const confirm = window.confirm(`Remove blog ${title}`)
     if (confirm) {
-      dispatch(deleteBlog(id))
-        .then(() => {
-          setMount(false)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      dispatch(deleteBlog(id)).catch((err) => {
+        console.log(err)
+      })
     }
   }
 
