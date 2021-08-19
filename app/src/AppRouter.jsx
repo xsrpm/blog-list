@@ -1,7 +1,7 @@
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import AppBlog from './components/blogs/AppBlog'
-import LoginContainer from './components/LoginContainer'
+import Login from './components/Login'
 import Notification from './components/Notification'
 import AppUser from './components/users/AppUser'
 import UserView from './components/users/UserView'
@@ -36,9 +36,9 @@ const AppRouter = () => {
   )
 
   const login = () => (
-    <LoginContainer>
+    <Login>
       <Notification />
-    </LoginContainer>
+    </Login>
   )
 
   return <Router>{signedUser ? routes() : login()}</Router>
