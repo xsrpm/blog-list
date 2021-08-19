@@ -6,7 +6,7 @@ import AppBlog from './components/blogs/AppBlog'
 import LoginContainer from './components/LoginContainer'
 import Notification from './components/Notification'
 import AppUser from './components/users/AppUser'
-import UserViewContainer from './components/users/UserView'
+import UserView from './components/users/UserView'
 
 const AppRouter = () => {
   const signedUser = useSelector((state) => state.signedUser)
@@ -27,7 +27,7 @@ const AppRouter = () => {
           <AppUser />
         </Route>
         <Route path='/users/:id'>
-          <UserViewContainer />
+          <UserView />
         </Route>
         <Route path='/'>
           <AppBlog />

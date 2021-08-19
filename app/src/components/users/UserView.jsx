@@ -5,9 +5,8 @@ import { sendNotification } from '../../actions/notificationAction'
 import { initializeUsers } from '../../actions/userAction'
 import { setToken } from '../../services/users'
 
-const UserViewContainer = () => {
+const UserView = () => {
   const id = useParams().id
-  console.log(id)
   const signedUser = useSelector((state) => state.signedUser)
 
   if (signedUser !== null) {
@@ -29,12 +28,7 @@ const UserViewContainer = () => {
     })
   }, [])
 
-  return <UserView userId={id} />
-}
-
-const UserView = ({ userId }) => {
-  const user = useSelector((state) => state.users.find((u) => u.id === userId))
-
+  const user = useSelector((state) => state.users.find((u) => u.id === id))
   if (!user) {
     return null
   }
@@ -53,4 +47,4 @@ const UserView = ({ userId }) => {
   )
 }
 
-export default UserViewContainer
+export default UserView
