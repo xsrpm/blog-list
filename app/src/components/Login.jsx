@@ -5,7 +5,7 @@ import useLogin from '../hooks/useLogin'
 import { useDispatch } from 'react-redux'
 const Login = ({ children }) => {
   const { loginForm, resetForm, submitLogin, handleChangeLogin } = useLogin()
-
+  const dispatch = useDispatch()
   const handleSubmitLogin = (e) => {
     e.preventDefault()
 
@@ -17,7 +17,7 @@ const Login = ({ children }) => {
         // that falls out of the range of 2xx
         console.log(error.response.data.error)
         console.log(error.response.status)
-        useDispatch(
+        dispatch(
           sendNotification(error.response.data?.error || error.response.data, 5)
         )
       }
