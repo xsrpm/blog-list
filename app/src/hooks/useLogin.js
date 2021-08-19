@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { login } from '../actions/loginAction'
+import { initializeLogin, login, logout } from '../actions/loginAction'
 
 const useLogin = () => {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' })
@@ -26,11 +26,24 @@ const useLogin = () => {
     })
   }
 
+  const handleLogout = () => {
+    window.localStorage.removeItem('signedUser')
+    dispatch(logout())
+  }
+
+  const initializeSignedUser = () => {
+    const dispatch = useDispatch()
+    const signedUser = JSON.parse(window.localStorage.getItem('signedUser'))
+    dispatch(initializeLogin(signedUser))
+  }
+
   return {
     loginForm,
     resetForm,
     submitLogin,
-    handleChangeLogin
+    handleChangeLogin,
+    handleLogout,
+    initializeSignedUser
   }
 }
 

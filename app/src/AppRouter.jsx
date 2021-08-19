@@ -1,19 +1,16 @@
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import AppBlog from './components/blogs/AppBlog'
 import Login from './components/Login'
 import Notification from './components/Notification'
 import AppUser from './components/users/AppUser'
 import UserView from './components/users/UserView'
-import { logout } from './actions/loginAction'
+import useLogin from './hooks/useLogin'
 
 const AppRouter = () => {
   const signedUser = useSelector((state) => state.signedUser)
-  const dispatch = useDispatch()
-  const handleLogout = () => {
-    window.localStorage.removeItem('signedUser')
-    dispatch(logout())
-  }
+  const { handleLogout } = useLogin()
+
   const routes = () => (
     <>
       <header>
