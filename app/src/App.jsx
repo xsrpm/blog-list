@@ -6,6 +6,7 @@ import AppBlog from './components/blogs/AppBlog'
 import LoginContainer from './components/LoginContainer'
 import Notification from './components/Notification'
 import AppUser from './components/users/AppUser'
+import UserViewContainer from './components/users/UserView'
 
 const AppRouter = () => {
   const signedUser = useSelector((state) => state.signedUser)
@@ -22,8 +23,11 @@ const AppRouter = () => {
         <input type='button' value='logout' onClick={handleLogout} />
       </header>
       <Switch>
-        <Route path='/users'>
+        <Route exact path='/users'>
           <AppUser />
+        </Route>
+        <Route path='/users/:id'>
+          <UserViewContainer />
         </Route>
         <Route path='/'>
           <AppBlog />
