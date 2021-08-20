@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import AppBlog from './blogs/AppBlog'
 import Login from './Login'
 import Notification from './Notification'
-import AppUser from './users/AppUser'
+import UserList from './users/UserList'
 import UserView from './users/UserView'
 import useLogin from '../hooks/useLogin'
 
@@ -20,7 +20,7 @@ const AppRouter = () => {
       </header>
       <Switch>
         <Route exact path='/users'>
-          <AppUser />
+          <UserList />
         </Route>
         <Route path='/users/:id'>
           <UserView />
