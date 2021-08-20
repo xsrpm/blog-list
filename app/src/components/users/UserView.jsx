@@ -9,11 +9,8 @@ const UserView = () => {
   const id = useParams().id
   const signedUser = useSelector((state) => state.signedUser)
 
-  if (signedUser !== null) {
-    setToken(signedUser.token)
-  } else {
-    setToken(null)
-  }
+  setToken(signedUser.token)
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(initializeUsers()).catch((error) => {

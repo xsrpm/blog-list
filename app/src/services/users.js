@@ -1,7 +1,7 @@
 import axios from 'axios'
 const baseUrl = '/api/users'
 
-let token = ''
+let token = null
 
 export const getAll = () => {
   const config = {

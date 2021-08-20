@@ -1,7 +1,7 @@
 import axios from 'axios'
 const baseUrl = '/api/blogs'
 
-let token = ''
+let token = null
 
 export const getAll = () => {
   const config = {

@@ -11,11 +11,7 @@ const AppBlog = () => {
   const dispatch = useDispatch()
   const signedUser = useSelector((state) => state.signedUser)
 
-  if (signedUser !== null) {
-    setToken(signedUser.token)
-  } else {
-    setToken(null)
-  }
+  setToken(signedUser.token)
 
   useEffect(() => {
     dispatch(initializeBlogs()).catch((error) => {
