@@ -1,11 +1,11 @@
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import AppBlog from './components/blogs/AppBlog'
-import Login from './components/Login'
-import Notification from './components/Notification'
-import AppUser from './components/users/AppUser'
-import UserView from './components/users/UserView'
-import useLogin from './hooks/useLogin'
+import AppBlog from './blogs/AppBlog'
+import Login from './Login'
+import Notification from './Notification'
+import AppUser from './users/AppUser'
+import UserView from './users/UserView'
+import useLogin from '../hooks/useLogin'
 
 const AppRouter = () => {
   const signedUser = useSelector((state) => state.signedUser)

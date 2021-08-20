@@ -1,6 +1,6 @@
 import React from 'react'
 import AppRouter from './AppRouter'
-import useLogin from './hooks/useLogin'
+import useLogin from '../hooks/useLogin'
 
 const App = () => {
   const { initializeSignedUser } = useLogin()
