@@ -6,6 +6,7 @@ import Notification from './Notification'
 import UserList from './users/UserList'
 import UserView from './users/UserView'
 import useLogin from '../hooks/useLogin'
+import BlogView from './blogs/BlogView'
 
 const AppRouter = () => {
   const signedUser = useSelector((state) => state.signedUser)
@@ -24,6 +25,9 @@ const AppRouter = () => {
         </Route>
         <Route path='/users/:id'>
           <UserView />
+        </Route>
+        <Route path='/blogs/:id'>
+          <BlogView />
         </Route>
         <Route path='/'>
           <AppBlog />
