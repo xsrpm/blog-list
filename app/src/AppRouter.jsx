@@ -8,8 +8,7 @@ import UserView from './components/users/UserView'
 import useLogin from './hooks/useLogin'
 
 const AppRouter = () => {
-  const signedUser = useSelector((state) => state.signedUser)
-  const { handleLogout } = useLogin()
+  const { handleLogout, signedUser } = useLogin()
 
   const routes = () => (
     <>

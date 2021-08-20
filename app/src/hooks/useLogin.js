@@ -4,6 +4,7 @@ import { initializeLogin, login, logout } from '../actions/loginAction'
 
 const useLogin = () => {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' })
+  const signedUser = useSelector((state) => state.signedUser)
   const dispatch = useDispatch()
 
   const resetLoginForm = () => {
@@ -43,7 +44,8 @@ const useLogin = () => {
     submitLogin,
     handleChangeLogin,
     handleLogout,
-    initializeSignedUser
+    initializeSignedUser,
+    signedUser
   }
 }
 
