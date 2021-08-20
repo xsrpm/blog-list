@@ -1,31 +1,12 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import { useParams } from 'react-router'
-import { sendNotification } from '../../actions/notificationAction'
-import { initializeUsers } from '../../actions/userAction'
-import { setToken } from '../../services/users'
+import useUser from '../../hooks/useUser'
 
 const UserView = () => {
   const id = useParams().id
-  const signedUser = useSelector((state) => state.signedUser)
+  const { getUserById } = useUser()
+  const user = getUserById(id)
 
-  setToken(signedUser.token)
-
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(initializeUsers()).catch((error) => {
-      console.log({ error })
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log(error.response.data)
-        console.log(error.response.status)
-        dispatch(sendNotification(error.response.data, 5))
-      }
-    })
-  }, [])
-
-  const user = useSelector((state) => state.users.find((u) => u.id === id))
   if (!user) {
     return null
   }
