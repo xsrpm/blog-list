@@ -6,7 +6,7 @@ const useLogin = () => {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' })
   const dispatch = useDispatch()
 
-  const resetForm = () => {
+  const resetLoginForm = () => {
     setLoginForm({ username: '', password: '' })
   }
 
@@ -39,7 +39,7 @@ const useLogin = () => {
 
   return {
     loginForm,
-    resetForm,
+    resetLoginForm,
     submitLogin,
     handleChangeLogin,
     handleLogout,

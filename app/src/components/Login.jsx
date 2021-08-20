@@ -4,13 +4,14 @@ import { sendNotification } from '../actions/notificationAction'
 import useLogin from '../hooks/useLogin'
 import { useDispatch } from 'react-redux'
 const Login = ({ children }) => {
-  const { loginForm, resetForm, submitLogin, handleChangeLogin } = useLogin()
+  const { loginForm, resetLoginForm, submitLogin, handleChangeLogin } =
+    useLogin()
   const dispatch = useDispatch()
   const handleSubmitLogin = (e) => {
     e.preventDefault()
 
     submitLogin().catch((error) => {
-      resetForm()
+      resetLoginForm()
       console.log({ error })
       if (error.response) {
         // The request was made and the server responded with a status code
