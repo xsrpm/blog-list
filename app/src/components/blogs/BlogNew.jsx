@@ -1,16 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import useBlogNew from '../../hooks/useBlogNew'
 
-const BlogNew = ({
-  handleSubmit,
-  title,
-  handleChangeTitle,
-  url,
-  handleChangeUrl,
-  formClose,
-  formOpen,
-  isOpen = false
-}) => {
+const BlogNew = () => {
+  const {
+    title,
+    url,
+    isOpen,
+    formClose,
+    formOpen,
+    handleChangeTitle,
+    handleChangeUrl,
+    handleSubmit
+  } = useBlogNew()
+
   const formClosed = () => {
     return <button onClick={formOpen}>create new blog</button>
   }
@@ -36,16 +38,8 @@ const BlogNew = ({
       </>
     )
   }
-  return <article>{isOpen ? formOpened() : formClosed()}</article>
-}
 
-BlogNew.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  handleChangeTitle: PropTypes.func.isRequired,
-  url: PropTypes.string.isRequired,
-  handleChangeUrl: PropTypes.func.isRequired,
-  formClose: PropTypes.func.isRequired
+  return <article>{isOpen ? formOpened() : formClosed()}</article>
 }
 
 export default BlogNew

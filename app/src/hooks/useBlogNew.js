@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { sendNotification } from '../../actions/notificationAction'
-import { createBlog } from '../../actions/blogAction'
+import { sendNotification } from '../actions/notificationAction'
+import { createBlog } from '../actions/blogAction'
 
-import BlogNew from './BlogNew'
-
-const BlogNewContainer = () => {
+const useBlogNew = () => {
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
   const [isOpen, setIsOpen] = useState(false)
@@ -51,18 +49,16 @@ const BlogNewContainer = () => {
     setUrl(target.value)
   }
 
-  return (
-    <BlogNew
-      handleSubmit={handleSubmit}
-      title={title}
-      handleChangeTitle={handleChangeTitle}
-      url={url}
-      handleChangeUrl={handleChangeUrl}
-      formClose={formClose}
-      formOpen={formOpen}
-      isOpen={isOpen}
-    />
-  )
+  return {
+    title,
+    url,
+    isOpen,
+    formClose,
+    formOpen,
+    handleChangeTitle,
+    handleChangeUrl,
+    handleSubmit
+  }
 }
 
-export default BlogNewContainer
+export default useBlogNew
