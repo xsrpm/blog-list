@@ -9,8 +9,7 @@ const useBlogNew = () => {
   const [isOpen, setIsOpen] = useState(false)
   const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const submit = () => {
     const blog = {
       title,
       url
@@ -57,7 +56,7 @@ const useBlogNew = () => {
     formOpen,
     handleChangeTitle,
     handleChangeUrl,
-    handleSubmit
+    submit
   }
 }
 

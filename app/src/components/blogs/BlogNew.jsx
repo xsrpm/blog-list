@@ -10,8 +10,13 @@ const BlogNew = () => {
     formOpen,
     handleChangeTitle,
     handleChangeUrl,
-    handleSubmit
+    submit
   } = useBlogNew()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    submit()
+  }
 
   const formClosed = () => {
     return <button onClick={formOpen}>create new blog</button>
