@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import AppBlog from './blogs/AppBlog'
 import Login from './Login'
@@ -12,12 +12,27 @@ const AppRouter = () => {
   const signedUser = useSelector((state) => state.signedUser)
   const { handleLogout } = useLogin()
 
+  const navStyle = {
+    padding: '0.5rem',
+    backgroundColor: 'cornflowerblue'
+  }
+  const spanStyle = {
+    padding: '0.25rem'
+  }
+
   const routes = () => (
     <>
-      <header>
-        <h1>bloglist</h1>
-        <p>Logged in as {signedUser.username}</p>
-        <input type='button' value='logout' onClick={handleLogout} />
+      <header style={navStyle}>
+        <nav>
+          <Link to='/' style={spanStyle}>
+            blogs
+          </Link>
+          <Link to='/users' style={spanStyle}>
+            users
+          </Link>
+          <span style={spanStyle}>Logged in as {signedUser.username}</span>
+          <input type='button' value='logout' onClick={handleLogout} />
+        </nav>
       </header>
       <Switch>
         <Route exact path='/users'>
