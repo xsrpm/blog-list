@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import useBlog from '../../hooks/useBlog'
+import Comments from '../comments/Comments'
 
 const BlogView = () => {
   const id = useParams().id
@@ -40,6 +41,7 @@ const BlogView = () => {
       <button onClick={() => handleClickDelete(blog.title, blog.id)}>
         remove
       </button>
+      <Comments comments={blog.comments} />
     </article>
   )
 }

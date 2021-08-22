@@ -10,7 +10,8 @@ const blogSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  comments: []
 })
 
 blogSchema.set('toJSON', {
@@ -47,7 +48,8 @@ const createBlog = async (title, url, author, userId) => {
     url: url,
     author: author,
     likes: 0,
-    user: userId
+    user: userId,
+    comments: []
   })
   return await blog.save()
 }
