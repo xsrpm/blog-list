@@ -53,8 +53,22 @@ const updateLikeByIdService = async (blogId, userId) => {
   return savedBlog
 }
 
+const addBlogCommentByIdService = async (blogId, comment) => {
+  const blog = await getBlogById(blogId)
+  if (blog === null) {
+    throw new Exception(
+      'BadRequest',
+      `the blog with the id:'${blogId}' does not exist`
+    )
+  }
+  blog.comments = blog.comments.concat(comment)
+  await blog.save()
+  return blog
+}
+
 module.exports = {
   createBlogService,
   updateBlogByIdService,
-  updateLikeByIdService
+  updateLikeByIdService,
+  addBlogCommentByIdService
 }

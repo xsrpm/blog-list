@@ -41,7 +41,7 @@ const BlogView = () => {
       <button onClick={() => handleClickDelete(blog.title, blog.id)}>
         remove
       </button>
-      <Comments comments={blog.comments} />
+      <Comments blogId={blog.id} />
     </article>
   )
 }

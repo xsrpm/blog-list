@@ -43,6 +43,14 @@ export const remove = (id) => {
   return request.then((response) => response.data)
 }
 
+export const createComment = (id, comment) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+  const request = axios.post(`${baseUrl}/${id}/comments`, { comment }, config)
+  return request.then((response) => response.data)
+}
+
 export const setToken = (userToken) => {
   token = userToken
 }

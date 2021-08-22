@@ -12,6 +12,10 @@ const reducer = (state = [], action) => {
       return newState
     case '@BLOG/DELETE_BLOG':
       return state.filter((b) => b.id !== action.payload.blogId)
+    case '@BLOG/NEW_COMMENT':
+      blog = newState.find((b) => b.id === action.payload.blogId)
+      blog.comments.push(action.payload.comment)
+      return newState
     default:
       return state
   }

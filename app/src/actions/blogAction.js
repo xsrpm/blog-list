@@ -49,3 +49,16 @@ export const likeBlog = (blogId) => {
     })
   }
 }
+
+export const addBlogComment = (blogId, comment) => {
+  return async (dispatch) => {
+    await like(blogId)
+    dispatch({
+      type: '@BLOG/NEW_COMMENT',
+      payload: {
+        blogId,
+        comment
+      }
+    })
+  }
+}
