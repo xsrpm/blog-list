@@ -21,7 +21,7 @@ const useBlog = () => {
         dispatch(sendNotification(error.response.data, 5))
       }
     })
-  }, [dispatch])
+  }, [])
 
   const getBlogs = () => {
     return useSelector((state) => state.blogs.sort((a, b) => b.likes - a.likes))
