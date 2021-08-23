@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteBlog, initializeBlogs, likeBlog } from '../actions/blogAction'
+import { deleteBlog, initializeBlogs } from '../actions/blogAction'
 import { sendNotification } from '../actions/notificationAction'
 import { setToken } from '../services/blogs'
 
@@ -31,19 +31,13 @@ const useBlog = () => {
     return useSelector((state) => state.blogs.find((blog) => blog.id === id))
   }
 
-  const like = (id) => {
-    dispatch(likeBlog(id)).catch((err) => {
-      console.log(err)
-    })
-  }
-
   const remove = (title, id) => {
     dispatch(deleteBlog(id)).catch((err) => {
       console.log(err)
     })
   }
 
-  return { getBlogs, getBlogById, like, remove }
+  return { getBlogs, getBlogById, remove }
 }
 
 export default useBlog
