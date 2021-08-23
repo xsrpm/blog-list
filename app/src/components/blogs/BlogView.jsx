@@ -2,19 +2,14 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import useBlog from '../../hooks/useBlog'
 import Comments from '../comments/Comments'
+import BlogDelete from './BlogDelete'
 import BlogLike from './BlogLike'
 
 const BlogView = () => {
   const id = useParams().id
-  const { getBlogById, remove } = useBlog()
+  const { getBlogById } = useBlog()
   const blog = getBlogById(id)
 
-  const handleClickDelete = (title, id) => {
-    const confirm = window.confirm(`Remove blog ${title}`)
-    if (confirm) {
-      remove(title, id)
-    }
-  }
   if (!blog) {
     return null
   }
@@ -24,9 +19,7 @@ const BlogView = () => {
       <div>{blog.url}</div>
       <BlogLike blog={blog} />
       <div>added by {blog.author}</div>
-      <button onClick={() => handleClickDelete(blog.title, blog.id)}>
-        remove
-      </button>
+      <BlogDelete blog={blog} />
       <Comments blogId={blog.id} />
     </article>
   )
