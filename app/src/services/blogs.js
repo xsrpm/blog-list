@@ -1,6 +1,7 @@
 import axios from 'axios'
-const baseUrl = '/api/blogs'
-
+import { config } from '../config/config'
+const baseUrl = `${config.REACT_APP_API}/api/blogs`
+console.log(baseUrl)
 let token = null
 
 export const getAll = () => {

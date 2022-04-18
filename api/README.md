@@ -1,6 +1,6 @@
 # Requeriments
 
-Requiere de una collección de MongoDB llamada blogs o la creará.
+Requiere de una colección de MongoDB llamada blogs o la creará.
 Revisar archivo ".env.example"
 
 # EXPRESS
@@ -51,7 +51,7 @@ Ejecutando test solo de cierto archivo, que coincida en parte con el nombre 'blo
 - https://stackoverflow.com/questions/49603939/message-async-callback-was-not-invoked-within-the-5000-ms-timeout-specified-by
 
 Cuando se ejecuta una sola prueba, la conexión de mongoose puede permanecer abierta si no se ejecuta ninguna prueba con la conexión. El problema puede deberse al hecho de que supertest prepara la conexión, pero jest no ejecuta la parte afterAll del código.
-Una solucion es ejecutar siempre test que usen supertest en un archivo y no mesclarlos con otros tipos de tests.
+Una solución es ejecutar siempre test que usen supertest en un archivo y no mesclarlos con otros tipos de tests.
 
 - https://github.com/visionmedia/supertest/issues/398
 
